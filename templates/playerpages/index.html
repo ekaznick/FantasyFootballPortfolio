@@ -1,0 +1,120 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+<div class="container">
+  <h1>Home page</h1>
+  <br>
+  <br>
+  <h2>Machine learning top players projections</h2>
+  <p>Note: These are projections of the top players from each position using linear regression algorithms. These do not necessarily reflect who I think will perform the best this upcoming season.</p>
+  <br />
+  <h3>Quarterbacks</h3>
+  <table
+    class="table table-bordered table-striped table-hover table-sm mx-auto my-4"
+  >
+    <thead class="thead-dark">
+      <tr>
+        <th>Name</th>
+        <th>Passing Yards</th>
+        <th>Passing Touchdowns</th>
+        <th>Rushing Yards</th>
+        <th>Points per Game</th>
+        <th>Personal Opinion</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for player in qbs %}
+      <tr>
+        <td>{{ player.NAME }}</td>
+        <td>{{ player.PASS_YDS }}</td>
+        <td>{{ player.PASS_TD }}</td>
+        <td>{{ player.RUSH_YDS }}</td>
+        <td>{{ player.FPTS_G }}</td>
+        <td>{{ player.personal_opinion|safe }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+<br />
+<div class="container">
+  <h3>Runningbacks</h3>
+  <table class="table table-bordered table-striped table-hover table-sm">
+    <thead class="thead-dark">
+      <tr>
+        <th>Name</th>
+        <th>Rushing Yards</th>
+        <th>Rushing Touchdowns</th>
+        <th>Receiving Yards</th>
+        <th>Points per Game (PPR)</th>
+        <th>Personal Opinion</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for player in rbs %}
+      <tr>
+        <td>{{ player.NAME }}</td>
+        <td>{{ player.RUSH_YDS }}</td>
+        <td>{{ player.RUSH_TD }}</td>
+        <td>{{ player.REC_YDS }}</td>
+        <td>{{ player.PPR_G }}</td>
+        <td>{{ player.personal_opinion|safe }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+<br />
+<div class="container">
+  <h3>Wide Receivers</h3>
+  <table class="table table-bordered table-striped table-hover table-sm">
+    <thead class="thead-dark">
+      <tr>
+        <th>Name</th>
+        <th>Receptions</th>
+        <th>Receiving Yards</th>
+        <th>Receiving Touchdowns</th>
+        <th>Points per Game (PPR)</th>
+        <th>Personal Opinion</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for player in wrs %}
+      <tr>
+        <td>{{ player.NAME }}</td>
+        <td>{{ player.REC }}</td>
+        <td>{{ player.REC_YDS }}</td>
+        <td>{{ player.REC_TD }}</td>
+        <td>{{ player.PPR_G }}</td>
+        <td>{{ player.personal_opinion|safe }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+<br />
+<div class="container">
+  <h3>Tight Ends</h3>
+  <table class="table table-bordered table-striped table-hover table-sm">
+    <thead class="thead-dark">
+      <tr>
+        <th>Name</th>
+        <th>Receptions</th>
+        <th>Receiving Yards</th>
+        <th>Receiving Touchdowns</th>
+        <th>Points per Game (PPR)</th>
+        <th>Personal Opinion</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for player in tes %}
+      <tr>
+        <td>{{ player.NAME }}</td>
+        <td>{{ player.REC }}</td>
+        <td>{{ player.REC_YDS }}</td>
+        <td>{{ player.REC_TD }}</td>
+        <td>{{ player.PPR_G }}</td>
+        <td>{{ player.personal_opinion|safe }}</td>
+      </tr>
+      {% endfor %} {% endblock %}
+    </tbody>
+  </table>
+</div>

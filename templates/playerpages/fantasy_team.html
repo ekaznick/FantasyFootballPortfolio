@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container">
+    <h1>Your Fantasy Team</h1>
+    {% if players %}
+    <table class="table table-bordered table-striped table-hover table-sm">
+        <thead class="thead-dark">
+            <tr>
+                <th>Name</th>
+                <th>Position</th>
+                <th>Team</th>
+                <!-- Add more columns if needed -->
+            </tr>
+        </thead>
+        <tbody>
+            {% for player in players %}
+            <tr>
+                <td>{{ player.NAME }}</td>
+                <td>{{ player.POSITION }}</td>
+                <td>{{ player.TEAM }}</td>
+                <!-- Add more data if needed -->
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>No players selected.</p>
+    {% endif %}
+</div>
+{% endblock %}

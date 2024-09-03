@@ -1,0 +1,143 @@
+{% extends 'base.html' %} 
+{% load static %} 
+{% block content %} 
+<div class="container">
+    <h1 class="mb-4">Players - {{ position }}</h1>
+    <div class="btn-group" role="group" aria-label="Player Positions">
+        <a href="{% url 'players' %}?position=QB" class="btn btn-primary">QB</a>
+        <a href="{% url 'players' %}?position=RB" class="btn btn-primary">RB</a>
+        <a href="{% url 'players' %}?position=WR" class="btn btn-primary">WR</a>
+        <a href="{% url 'players' %}?position=TE" class="btn btn-primary">TE</a>
+    </div>
+
+    {% if players %} 
+    <table class="table table-bordered table-striped table-hover table-sm mx-auto">
+        <thead class="thead-dark">
+            {% if position == 'QB' %}
+            <tr>
+                <th>Name</th>
+                <th>Completions</th>
+                <th>Passing Attempts</th>
+                <th>Passing Percentage</th>
+                <th>Passing Yards</th>
+                <th>Passing Touchdowns</th>
+                <th>Interceptions</th>
+                <th>Sacks</th>
+                <th>Rushing Yards</th>
+                <th>Rushing Touchdowns</th>
+                <th>Fumbles Lost</th>
+                <th>Points per Game</th>
+                <th>Overall Points</th>
+            </tr>
+            {% elif position == 'WR' %}
+            <tr>
+                <th>Name</th>
+                <th>Receptions</th>
+                <th>Receiving Yards</th>
+                <th>Longest Reception</th>
+                <th>Receptions over 20 Yards</th>
+                <th>Yards per Reception</th>
+                <th>Receiving Touchdowns</th>
+                <th>Points per Game</th>
+                <th>Overall Points</th>
+                <th>PPR per Game</th>
+                <th>PPR Overall</th>
+            </tr>
+            {% elif position == 'RB' %}
+            <tr>
+                <th>Name</th>
+                <th>Rushing Attempts</th>
+                <th>Rushing Yards</th>
+                <th>Rush Yards per Attempt</th>
+                <th>Longest Rushing Attempt</th>
+                <th>Rushes over 20 Yards</th>
+                <th>Rushing Touchdowns</th>
+                <th>Receptions</th>
+                <th>Receiving Yards</th>
+                <th>Receiving Touchdowns</th>
+                <th>Fumbles Lost</th>
+                <th>Points per Game</th>
+                <th>Overall Points</th>
+                <th>PPR per Game</th>
+                <th>PPR Overall</th>
+            </tr>
+            {% elif position == 'TE' %}
+            <tr>
+                <th>Name</th>
+                <th>Receptions</th>
+                <th>Receiving Yards</th>
+                <th>Longest Reception</th>
+                <th>Receptions over 20 Yards</th>
+                <th>Yards per Reception</th>
+                <th>Receiving Touchdowns</th>
+                <th>Points per Game</th>
+                <th>Overall Points</th>
+                <th>PPR per Game</th>
+                <th>PPR Overall</th>
+            </tr>
+            {% endif %}
+        </thead>
+        <tbody>
+            {% for player in players %}
+            <tr>
+                <td>{{ player.NAME }}</td>
+                {% if position == 'QB' %}
+                <td>{{ player.CMP }}</td>
+                <td>{{ player.PASS_ATT }}</td>
+                <td>{{ player.PASS_PCT }}</td>
+                <td>{{ player.PASS_YDS }}</td>
+                <td>{{ player.PASS_TD }}</td>
+                <td>{{ player.INT }}</td>
+                <td>{{ player.SACKS }}</td>
+                <td>{{ player.RUSH_YDS }}</td>
+                <td>{{ player.RUSH_TD }}</td>
+                <td>{{ player.FL }}</td>
+                <td>{{ player.FPTS_G }}</td>
+                <td>{{ player.OVERALL_PTS}}</td>
+                {% elif position == 'WR' %}
+                <td>{{ player.REC }}</td>
+                <td>{{ player.REC_YDS }}</td>
+                <td>{{ player.REC_LG }}</td>
+                <td>{{ player.REC_20 }}</td>
+                <td>{{ player.YPR }}</td>
+                <td>{{ player.REC_TD }}</td>
+                <td>{{ player.FPTS_G }}</td>
+                <td>{{ player.OVERALL_PTS }}</td>
+                <td>{{ player.PPR_G }}</td>
+                <td>{{ player.PPR}}</td>
+                {% elif position == 'RB' %}
+                <td>{{ player.RUSH_ATT }}</td>
+                <td>{{ player.RUSH_YDS }}</td>
+                <td>{{ player.RUSH_YPA}}</td>
+                <td>{{ player.RUSH_LG}}</td>
+                <td>{{ player.RUSH_20}}</td>
+                <td>{{ player.RUSH_TD}}</td>
+                <td>{{ player.REC }}</td>
+                <td>{{ player.REC_YDS }}</td>
+                <td>{{ player.REC_TD }}</td>
+                <td>{{ player.FL }}</td>
+                <td>{{ player.FPTS_G }}</td>
+                <td>{{ player.OVERALL_PTS }}</td>
+                <td>{{ player.PPR }}</td>
+                <td>{{ player.PPR_G }}</td>
+                {% elif position == 'TE' %}
+                <td>{{ player.REC }}</td>
+                <td>{{ player.REC_YDS }}</td>
+                <td>{{ player.REC_LG }}</td>
+                <td>{{ player.REC_20 }}</td>
+                <td>{{ player.YPR }}</td>
+                <td>{{ player.REC_TD }}</td>
+                <td>{{ player.FPTS_G }}</td>
+                <td>{{ player.OVERALL_PTS }}</td>
+                <td>{{ player.PPR_G }}</td>
+                <td>{{ player.PPR}}</td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>No players found for this position.</p>
+    {% endif %}
+</div>
+{% endblock %}
