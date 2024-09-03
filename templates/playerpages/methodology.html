@@ -1,6 +1,57 @@
 {% extends 'base.html' %} {% load static %} {% block content %}
 <div class="container">
     <h1>Methodology</h1>
-    <p>Click the link to see my <a href="https://colab.research.google.com/drive/1j_5b9c508CTTYG0pnBMWfMxUWK-9UIrv?usp=sharing" target="_blank"> Google Colab </a>files and how I came up with these results.</p>
+    <p>Click the link to see my <a href="https://colab.research.google.com/drive/1j_5b9c508CTTYG0pnBMWfMxUWK-9UIrv?usp=sharing" target="_blank"> Google Colab</a> files and how I came up with my results.</p>
+    <br>
+    <h2>Here is a bulleted list of what I did:</h2>
+    <ol>
+        <li>Created functions for all the steps of the pipeline
+            <ul>
+                <li>Note: Most of these functions do not appear because I deleted the data understanding and modeling steps, as they were redundant</li>
+                <br>
+            </ul>
+        </li>
+        <li>Created the pipeline
+            <ul>
+                <li>Loaded the player data through my Google Drive</li>
+                <li>Removed player name and points columns</li>
+                <li>Filtered to players who have a large enough sample size (more than eight games and have scored at least a point)</li>
+                <li>Removed any outliers and skewness from the remaining data</li>
+                <br>
+            </ul>
+        </li>
+        <li>Defined features and target</li>
+        <br>
+        <li>Split the data 20/80</li>
+        <br>
+        <li>Defined imputing method and used standard scaling</li>
+        <br>
+        <li>The algorithm was GradientBoostingRegressor
+            <ul>
+                <li>Learning rate: 0.1</li>
+                <li>Max depth: 3</li>
+                <li>Min samples split: 10</li>
+                <li>Min samples leaf = 1</li>
+                <li>N estimator: 500</li>
+                <br>
+            </ul>
+        </li>
+        <li>Fit the pipline on the training data</li>
+        <br>
+        <li>Evaluated the model on the test set
+            <ul>
+                <li>Test R-squared: 0.9021</li>
+                <li>Cross-Validation R-squared: 0.8740 ± 0.0617</li>
+                <br>
+            </ul>
+        </li>
+        <li>Displayed feature importance</li>
+        <br>
+        <li>Dumped and loaded the pipeline to a .sav file for making predictions</li>
+        <br>
+        <li>Used input data to predict player fantasy points per game for this season based on previous years' data</li>
+        <br>
+        <li>Saved prediction to an Excel file</li>
+    </ol>
 </div>
 {% endblock %}
